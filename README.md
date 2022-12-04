@@ -2,6 +2,6 @@
 
 ## Author: John Carroll
 
-I had a lot of fun coding this one. It is a bit fugly but I was much more interested in the game code than the styling.
+I had a lot of fun coding this one. It is a bit fugly but I was much more interested in the game code than the styling. This is my first time using tailwind and I really enjoyed it.
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/aov-2022-pilot-puzzle-miz1hc)
