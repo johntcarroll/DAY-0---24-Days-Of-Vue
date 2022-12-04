@@ -62,7 +62,7 @@ const result = computed(() => {
     path(state.board, '0.2', '1.1', '2.0'),
   ]
   const winner = winningResults.filter(Boolean).length > 0 ? winningResults.filter(Boolean)[0] : false
-  const tie = !wiinner && Object.values(state.board).filter(Boolean).length == 9 && 'tie'
+  const tie = !winner && Object.values(state.board).filter(Boolean).length == 9 && 'tie'
   return winner || tie
 })
 
@@ -84,11 +84,11 @@ watch(result, (newResult, oldResult) => {
       >Its your turn: <span class="uppercase"> [{{ playersTurn }}]</span></span
     >
   </div>
-  <div class="w-full board mt-4">
-    <div class="grid grid-cols-3 grid-rows-3 gap-0">
+  <div class="board mt-4 w-full flex justify-center">
+    <div class="grid grid-cols-3 grid-rows-3 gap-0 w-44">
       <div v-for="coord in Object.keys(state.board)" :key="`sq-${coord}`" :class="borders(coord)">
         <button
-          class="w-full h-full place-content-center p-4"
+          class="w-full h-full place-content-center p-4 uppercase"
           @click="state.board[coord] = playersTurn"
           :disabled="Boolean(state.board[coord]) || result"
         >
