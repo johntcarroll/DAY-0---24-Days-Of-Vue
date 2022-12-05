@@ -42,7 +42,12 @@ const playersTurn = computed(() =>
     : 'x'
 )
 
-import path from './helpers/path'
+const path = (start, middle, end) =>
+  state.board[start] === state.board[middle] &&
+  state.board[start] === state.board[end] &&
+  state.board[start] !== null &&
+  state.board[start]
+
 // returns either "x" (x won), "o" (o won), "tie" (game is a draw) or false (game in progress)
 const result = computed(() => {
   // each array element is a winning board condition
@@ -50,16 +55,16 @@ const result = computed(() => {
   // if the win condition is not met, false is returned
   let winningResults = [
     // horizontal wins
-    path(state.board, '0.0', '0.1', '0.2'),
-    path(state.board, '1.0', '1.1', '2.2'),
-    path(state.board, '2.0', '2.1', '2.2'),
+    path('0.0', '1.0', '2.0'),
+    path('0.1', '1.1', '2.1'),
+    path('0.2', '1.2', '2.2'),
     // vertical wins
-    path(state.board, '0.0', '0.1', '0.2'),
-    path(state.board, '1.0', '1.1', '1.2'),
-    path(state.board, '2.0', '2.1', '2.2'),
+    path('0.0', '0.1', '0.2'),
+    path('1.0', '1.1', '1.2'),
+    path('2.0', '2.1', '2.2'),
     // diag wins
-    path(state.board, '0.0', '1.1', '2.2'),
-    path(state.board, '0.2', '1.1', '2.0'),
+    path('0.0', '1.1', '2.2'),
+    path('0.2', '1.1', '2.0'),
   ]
   const winner = winningResults.filter(Boolean).length > 0 ? winningResults.filter(Boolean)[0] : false
   const tie = !winner && Object.values(state.board).filter(Boolean).length == 9 && 'tie'
