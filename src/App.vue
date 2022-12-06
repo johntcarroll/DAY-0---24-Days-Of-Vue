@@ -42,6 +42,7 @@ const playersTurn = computed(() =>
     : 'x'
 )
 
+// todo - maybe place this in a separate file
 const path = (start, middle, end) =>
   state.board[start] === state.board[middle] &&
   state.board[start] === state.board[end] &&
